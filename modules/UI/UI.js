@@ -300,7 +300,7 @@ UI.updateUserStatus = (user, status) => {
 UI.toggleFilmstrip = function() {
     const { visible } = APP.store.getState()['features/filmstrip'];
 
-    APP.store.dispatch(setFilmstripVisible(!visible));
+    APP.store.dispatch(setFilmstripVisible(false));
 };
 
 /**
