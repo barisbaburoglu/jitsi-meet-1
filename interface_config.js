@@ -27,7 +27,7 @@ var interfaceConfig = {
      *
      * @type {boolean}
      */
-    CONNECTION_INDICATOR_AUTO_HIDE_ENABLED: true,
+    CONNECTION_INDICATOR_AUTO_HIDE_ENABLED: false,
 
     /**
      * How long the connection indicator should remain displayed before hiding.
@@ -191,11 +191,7 @@ var interfaceConfig = {
      * - 'desktop' controls the "Share your screen" button
      */
     TOOLBAR_BUTTONS: [
-        'microphone', 'camera', 'closedcaptions', 'desktop', 'embedmeeting', 'fullscreen',
-        'fodeviceselection', 'hangup', 'profile', 'chat', 'recording',
-        'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
-        'videoquality', 'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts',
-        'tileview', 'videobackgroundblur', 'download', 'help', 'mute-everyone', 'security'
+        
     ],
 
     TOOLBAR_TIMEOUT: 4000,
@@ -203,7 +199,14 @@ var interfaceConfig = {
     // Browsers, in addition to those which do not fully support WebRTC, that
     // are not supported and should show the unsupported browser page.
     UNSUPPORTED_BROWSERS: [],
+    
+    /**
+     * Whether to only show the filmstrip (and hide the toolbar).
+     */
+    filmStripOnly: false,
 
+    // To hide filmstrip
+    SET_FILMSTRIP_ENABLED: true,
     /**
      * Whether to show thumbnails in filmstrip as a column instead of as a row.
      */
