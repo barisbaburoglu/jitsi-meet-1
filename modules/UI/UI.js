@@ -157,8 +157,7 @@ UI.start = function() {
 
     sharedVideoManager = new SharedVideoManager(eventEmitter);
 
-    interfaceConfig.SET_FILMSTRIP_ENABLED = false
-    if (!interfaceConfig.SET_FILMSTRIP_ENABLED) {
+    if (config.hideFilmstrip) {
         $('.filmstrip').hide();
     } else if (interfaceConfig.filmStripOnly) {
         $('body').addClass('filmstrip-only');
