@@ -142,8 +142,6 @@ UI.start = function() {
     // Set the defaults for prompt dialogs.
     $.prompt.setDefaults({ persistent: false });
 
-    Filmstrip.init(eventEmitter);
-
     VideoLayout.init(eventEmitter);
     if (!interfaceConfig.filmStripOnly) {
         VideoLayout.initLargeVideo();
@@ -153,11 +151,18 @@ UI.start = function() {
     // resizeVideoArea) because the animation is not visible anyway. Plus with
     // the current dom layout, the quality label is part of the video layout and
     // will be seen animating in.
-    VideoLayout.resizeVideoArea(true, false);
+    VideoLayout.resizeVideoArea();
 
     sharedVideoManager = new SharedVideoManager(eventEmitter);
 
-    if (config.hideFilmstrip) {
+    if (isMobileBrowser()) {
+        $('body').addClass('mobile-browser');
+    } else {
+        $('body').addClass('desktop-browser');
+    }
+
+    interfaceConfig.SET_FILMSTRIP_ENABLED = false
+    if (!interfaceConfig.SET_FILMSTRIP_ENABLED) {
         $('.filmstrip').hide();
     } else if (interfaceConfig.filmStripOnly) {
         $('body').addClass('filmstrip-only');
@@ -166,12 +171,13 @@ UI.start = function() {
         // in case of iAmSipGateway keep local video visible
         if (!config.iAmSipGateway) {
             VideoLayout.setLocalVideoVisible(false);
+            APP.store.dispatch(setNotificationsEnabled(false));
         }
 
         APP.store.dispatch(setToolboxEnabled(false));
-        APP.store.dispatch(setNotificationsEnabled(false));
         UI.messageHandler.enablePopups(false);
     }
+
 };
 
 /**
